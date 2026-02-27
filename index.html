@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapture360 Photography</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  :root{
+  --primary:#1FA2D8;
+  --deep-blue:#0B6FA8;
+  --luxury-dark:#0F172A;
+  --luxury-black:#020617;
+  --accent:#F47A20;
+  --soft-gold:#ffb36b;
+  --text-dark:#1E1E1E;
+  --text-light:#EAF6FD;
+}
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins, sans-serif;
+}
+
+/* BODY */
+body{
+  scroll-behavior:smooth;
+  background: radial-gradient(
+    circle at top,
+    #0F172A,
+    #020617 60%
+  );
+  color:var(--text-light);
+}
+
+/* NAVBAR (WHITE FOR LOGO) */
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 40px;
+  background:#FFFFFF;
+  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+  z-index:1000;
+}
+
+header img{
+  height:100px;
+}
+
+/* NAV LINKS DARK FOR VISIBILITY */
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:var(--text-dark);
+  letter-spacing:1px;
+  font-weight:600;
+  transition:.3s;
+}
+
+nav a:hover{
+  color:var(--primary);
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  overflow:hidden;
+  color:white;
+}
+
+/* VIDEO */
+.bg-video{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:translate(-50%,-50%);
+  z-index:-2;
+}
+
+/* OVERLAY */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    rgba(0,0,0,0.55),
+    rgba(11,111,168,0.45)
+  );
+  z-index:-1;
+}
+
+/* HERO CONTENT */
+.hero-content{
+  z-index:1;
+  animation:fadeUp 1.5s ease;
+}
+
+.hero h1{
+  font-size:3.5rem;
+  letter-spacing:2px;
+  text-shadow:0 0 25px rgba(0,0,0,0.6);
+}
+
+.hero p{
+  margin-top:10px;
+  letter-spacing:3px;
+  opacity:.95;
+}
+
+/* BUTTONS */
+.hero button,
+form button{
+  margin-top:25px;
+  background:linear-gradient(45deg,#F47A20,#ffb36b);
+  color:white;
+  border:none;
+  padding:14px 38px;
+  border-radius:30px;
+  font-weight:600;
+  letter-spacing:1px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(244,122,32,0.4);
+  transition:.3s;
+}
+
+.hero button:hover,
+form button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 30px rgba(244,122,32,0.7);
+}
+
+/* SECTIONS */
+section{
+  padding:120px 8%;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:50px;
+  letter-spacing:2px;
+}
+
+/* PACKAGES GRID */
+.packages{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:40px;
+}
+
+/* CARDS — BIGGER & READABLE */
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:20px;
+  padding:45px;              /* increased */
+  min-height:420px;          /* increased length */
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-15px) scale(1.03);
+  box-shadow:0 25px 50px rgba(0,0,0,0.6);
+}
+
+.card h3{
+  color:#ffb36b;
+  margin-bottom:20px;
+  font-size:22px;
+}
+
+.card ul{
+  line-height:2;             /* more spacing */
+  font-size:15px;
+  opacity:.95;
+}
+
+/* HIGHLIGHT CARD */
+.highlight{
+  border:1px solid rgba(244,122,32,0.7);
+  box-shadow:0 0 25px rgba(244,122,32,0.35);
+}
+
+/* FORM */
+form{
+  max-width:520px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+input, textarea{
+  padding:14px;
+  border-radius:10px;
+  border:none;
+  background:rgba(255,255,255,0.12);
+  color:white;
+}
+
+/* SOCIALS */
+.socials{
+  text-align:center;
+  margin-top:30px;
+}
+
+.socials a{
+  font-size:28px;
+  margin:0 15px;
+  color:var(--primary);
+  transition:.3s;
+}
+
+.socials a:hover{
+  color:var(--accent);
+  transform:scale(1.2);
+}
+
+/* WHATSAPP */
+.whatsapp-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:linear-gradient(45deg,#F47A20,#ffb36b);
+  color:white;
+  padding:16px;
+  border-radius:50%;
+  font-size:26px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(244,122,32,0.6);
+}
+
+/* POPUP */
+.popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+}
+
+.popup-box{
+  background:#0F172A;
+  border:1px solid rgba(255,255,255,0.1);
+  width:320px;
+  margin:18% auto;
+  padding:25px;
+  text-align:center;
+  border-radius:15px;
+  color:white;
+}
+
+.popup-box button{
+  display:block;
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  background:linear-gradient(45deg,#1FA2D8,#0B6FA8);
+  color:white;
+  border:none;
+  border-radius:8px;
+}
+
+/* FOOTER */
+footer{
+  background:#020617;
+  color:#94A3B8;
+  text-align:center;
+  padding:30px;
+  letter-spacing:2px;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp-btn" onclick="openPopup()">
+<i class="fab fa-whatsapp"></i>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-box">
+<h3>Select WhatsApp</h3>
+<button onclick="chat('919517627829')">95176 27829</button>
+<button onclick="chat('917710286497')">77102 86497</button>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<!-- NAV -->
+<header>
+<img src="kapture 360.jpeg" alt="logo">
+<nav>
+<a href="#home">Home</a>
+<a href="#packages">Packages</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="Turquoise Green Sandy Beach Drone Footage Travel Video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <h1>Kapture360 Photography</h1>
+    <p>Crafting Visual Excellence</p>
+    <button onclick="openPopup()">Book Now</button>
+  </div>
+
+</section>
+
+
+<!-- PACKAGES -->
+<section id="packages">
+<h2>Our Packages</h2>
+<div class="packages">
+
+<div class="card">
+<h3>Standard Budget ₹50,000</h3>
+<ul>
+<li>Single Camera Video + Still</li>
+<li>300 Photos Album (NTR)</li>
+<li>2 Photo Frames</li>
+<li>Full HD Video USB</li>
+<li>All Raw Photos</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>High Budget ₹80,000</h3>
+<ul>
+<li>Candid + Cinematic</li>
+<li>Drone + Second Camera</li>
+<li>4K Highlight</li>
+<li>Teaser + 2 Reels</li>
+</ul>
+</div>
+
+<div class="card highlight">
+<h3>Super High ₹1,30,000</h3>
+<ul>
+<li>Boy + Girl Coverage</li>
+<li>2 Albums</li>
+<li>4 Frames</li>
+<li>4K Film + Teaser</li>
+<li>4 Reels</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Booking Enquiry</h2>
+<form onsubmit="sendForm(event)">
+<input id="name" placeholder="Name" required>
+<input id="event" placeholder="Event Type" required>
+<input id="date" type="date" required>
+<textarea id="msg" placeholder="Message"></textarea>
+<button type="submit">Send Enquiry</button>
+</form>
+
+<div class="socials">
+<a href="https://www.instagram.com/kaptur_360?igsh=N2IzbmNrZm5pdGs0"><i class="fab fa-instagram"></i></a>
+<a href="https://www.facebook.com/share/1D1UVXz6sA/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+<a href="https://youtube.com/@deepphotography483?si=JR7U_LU6blw8sIPa"><i class="fab fa-youtube"></i></a>
+</div>
+</section>
+
+<footer>© Kapture360 Photography</footer>
+
+<script>
+function openPopup(){
+document.getElementById("popup").style.display="block";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function chat(num){
+window.open(`https://wa.me/${num}`,"_blank");
+}
+
+function sendForm(e){
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let event=document.getElementById("event").value;
+let date=document.getElementById("date").value;
+let msg=document.getElementById("msg").value;
+
+let text=`Hello Kapture360,
+Name: ${name}
+Event: ${event}
+Date: ${date}
+Message: ${msg}`;
+
+let urlText=encodeURIComponent(text);
+
+openPopup();
+
+document.querySelectorAll(".popup-box button").forEach(btn=>{
+btn.onclick=()=>{
+let num=btn.innerText.replace(/\s/g,'');
+window.open(`https://wa.me/91${num}?text=${urlText}`);
+};
+});
+}
+</script>
+
+</body>
+</html>
+
