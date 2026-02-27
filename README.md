@@ -1,4 +1,4 @@
-![Project Screenshot](screenshot.png)
+<img src="Screenshot.png" width="800">
 # 📸 Kapture360 Photography
 
 A modern photography portfolio website built using HTML, CSS and JavaScript.
